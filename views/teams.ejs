@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+
+<body>
+    <h1>Hello World</h1>
+    <%
+        let list = '';
+        for (i = 0; i < team_name.length; i++) {
+            list += '<li>team_name[i]</li>'
+        }
+        return list;
+    %>
+</body>
+
+</html>
