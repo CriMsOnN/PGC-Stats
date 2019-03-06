@@ -1,5 +1,10 @@
+<<<<<<< HEAD
 -CREATE FRONT-END WITH REACT
 --ADD TEAMS
 --DELETE TEAMS
 --ADD SCORE
 --DELETE SCORE
+=======
+-Add images next to team name
+-- Select from a drop down the image name
+>>>>>>> dev
