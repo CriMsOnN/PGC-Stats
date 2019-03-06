@@ -1,0 +1,74 @@
+body {
+    background-color: #1D1D1B !important;
+    background-image: url('./assets/background.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+.inline {
+    width: 100%;
+    text-align: right;
+}
+
+.outer {
+    display: inline-block;
+    margin-left: 10px;
+}
+
+
+
+/* .addteam {
+    position:relative;
+    transition: .5s ease;
+    right: -700px;
+    z-index: auto;
+}
+
+.deleteteam {
+    position:relative;
+    transition: .5s ease;
+    right: -300px;
+    z-index: auto;
+} */
+
+.logo {
+    right: 0;
+    left: 0;
+    padding: 1rem;
+    text-align: left;
+}
+
+
+table {
+    counter-reset: rowNumber 1;
+}
+
+table tr:not(:first-child) {
+    counter-increment: rowNumber;
+}
+
+table tr td:first-child::before {
+    content: counter(rowNumber);
+    min-width: 1em;
+    margin-right: 0.5em;
+}
+
+.discord {
+    right: 0;
+    left: 0;
+    padding: 1rem;
+    text-align: left;
+}
+.footer {
+    width: 100%;
+    bottom: 0;
+    left: 0;
+    padding: 1rem;
+    text-align: center;
+    color: white;
+}
+
+.footer p {
+    opacity: 0.7;
+}

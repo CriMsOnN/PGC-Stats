@@ -1,0 +1,26 @@
+{
+  "name": "pgc-stats",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www",
+    "heroku-postbuild": "cd client && npm install --only=dev && npm install && npm run build"
+  },
+  "dependencies": {
+    "concurrently": "^4.1.0",
+    "cookie-parser": "~1.4.3",
+    "cors": "^2.8.5",
+    "debug": "~2.6.9",
+    "dotenv": "^6.2.0",
+    "ejs": "~2.5.7",
+    "express": "~4.16.0",
+    "http-errors": "~1.6.2",
+    "mongodb": "^3.1.13",
+    "mongoose": "^5.4.14",
+    "monk": "^6.0.6",
+    "morgan": "~1.9.0"
+  },
+  "engines": {
+    "node": "11.9.0"
+  }
+}
