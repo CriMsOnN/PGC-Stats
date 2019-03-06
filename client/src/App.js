@@ -12,7 +12,8 @@ class App extends Component {
     this.state = {
       data: [],
       intervalIsSet: false,
-      nameToDelete: null
+      nameToDelete: null,
+      nameToUpdate: null
     }
   }
 
@@ -68,11 +69,8 @@ class App extends Component {
       <div className="container">
         <div className="inline">
           <img className="image" src="https://discordapp.com/api/guilds/362993221229346818/embed.png" alt="Discord Server" />
-          <button type="button" className="btn btn-primary outer" data-toggle="modal" data-target="#exampleModal" data-whatever="addNewTeam">Add</button>
-          <button type="button" className="btn btn-primary outer" data-toggle="modal" data-target="#exampleModal3" data-whatever="updateteam">Update</button>
+          <button type="button" className="btn btn-primary outer" data-toggle="modal" data-target="#exampleModal" data-whatever="addNewTeam">Add team</button>
         </div>
-        <Addnewteam dataAccess={this.state.data} />
-        <Updateteam dataAccess={this.state.data} />
         <div className="logo">
           <img src={logo} alt={"logo"} />
         </div>
@@ -106,11 +104,19 @@ class App extends Component {
                         }, () => {
                           this.deleteDB(this.state.nameToDelete, e)
                         })
-                      }}><i className="fas fa-trash"></i></button></td>
+                      }}><i className="fas fa-trash" alt="Delete"></i></button>
+                        <button onClick={() => {
+                          this.setState({
+                            nameToUpdate: m.name
+                          })
+                        }} data-toggle="modal" data-target="#exampleModal3"><i className="fas fa-edit" alt="Update"></i></button>
+                      </td>
                     </tr>
                   ))}
                 </tbody>
               </table>
+              <Addnewteam dataAccess={this.state.data} />
+              <Updateteam dataAccess={this.state.data} update={this.state.nameToUpdate} />
               <div className="footer" style={{ position: "fixed" }}>
                 <p>Copyright © 2019 PGC. All rights Reserved<br />This project is under development.<br />More comming soon.</p>
               </div>
