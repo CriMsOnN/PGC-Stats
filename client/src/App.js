@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import logo from './assets/projectExtreme.png';
 import Addnewteam from './Components/Addnewteam';
 import Updateteam from './Components/Updateteam';
-import Deleteteam from './Components/Deleteteam';
 
 class App extends Component {
   constructor() {
@@ -12,6 +12,7 @@ class App extends Component {
     this.state = {
       data: [],
       intervalIsSet: false,
+      nameToDelete: null
     }
   }
 
@@ -28,6 +29,25 @@ class App extends Component {
       clearInterval(this.state.intervalIsSet)
       this.setState({ intervalIsSet: null })
     }
+  }
+
+  handleSelectChange = (event) => {
+    this.setState({
+      nameToDelete: event.target.value
+    })
+  }
+
+  deleteDB = (name, e) => {
+    this.state.data.forEach(dat => {
+      if (dat.name === this.state.nameToDelete) {
+        name = dat.name
+      }
+    })
+    axios.delete("https://pgcstats.herokuapp.com/teams/deleteTeams", {
+      data: {
+        name: this.state.nameToDelete
+      }
+    })
   }
 
   getDataFromDb = () => {
@@ -49,12 +69,10 @@ class App extends Component {
         <div className="inline">
           <img className="image" src="https://discordapp.com/api/guilds/362993221229346818/embed.png" alt="Discord Server" />
           <button type="button" className="btn btn-primary outer" data-toggle="modal" data-target="#exampleModal" data-whatever="addNewTeam">Add</button>
-          <button type="button" className="btn btn-primary outer" data-toggle="modal" data-target="#exampleModal2" data-whatever="deleteteam">Delete</button>
           <button type="button" className="btn btn-primary outer" data-toggle="modal" data-target="#exampleModal3" data-whatever="updateteam">Update</button>
         </div>
         <Addnewteam dataAccess={this.state.data} />
         <Updateteam dataAccess={this.state.data} />
-        <Deleteteam dataAccess={this.state.data} />
         <div className="logo">
           <img src={logo} alt={"logo"} />
         </div>
@@ -70,6 +88,7 @@ class App extends Component {
                     <th scope="col">Captain</th>
                     <th scope="col">Average Placement</th>
                     <th scope="col">Kills</th>
+                    <th scope="col">Action</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -81,12 +100,19 @@ class App extends Component {
                       <td>{m.captain}</td>
                       <td>{m.placement}</td>
                       <td>{m.kills}</td>
+                      <td><button onClick={(e) => {
+                        this.setState({
+                          nameToDelete: m.name
+                        }, () => {
+                          this.deleteDB(this.state.nameToDelete, e)
+                        })
+                      }}><i className="fas fa-trash"></i></button></td>
                     </tr>
                   ))}
                 </tbody>
               </table>
               <div className="footer" style={{ position: "fixed" }}>
-                <p>Copyright © 2019 PGC. All rights Reserved<br />This project is under development so nothing is perfect</p>
+                <p>Copyright © 2019 PGC. All rights Reserved<br />This project is under development.<br />More comming soon.</p>
               </div>
             </div>
           ) : ""
