@@ -9,7 +9,7 @@ const cors = require('cors')
 
 //mongodb://localhost:27017/PGCTeams
 
-mongoose.connect('mongodb+srv://crimson:anastasios123@pgcstats-dsszo.mongodb.net/test?retryWrites=true', { useNewUrlParser: true })
+mongoose.connect('mongodb+srv://crimson:**@pgcstats-dsszo.mongodb.net/test?retryWrites=true', { useNewUrlParser: true })
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
